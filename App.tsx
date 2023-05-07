@@ -24,11 +24,13 @@ const App: React.FC = () => {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
+              testID="WelcomeScreen"
               name="Welcome"
               component={Welcome}
               options={{headerShown: false}}
             />
             <Stack.Screen
+              testID="Login"
               name="Login"
               component={Login}
               options={{headerShown: false}}

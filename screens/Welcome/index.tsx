@@ -53,7 +53,7 @@ const WelcomeScreen = () => {
       </Animated.Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          testID="Login"
+          testID="toLoginButton"
           style={[styles.button, {backgroundColor: theme.colors.primary}]}
           onPress={handleNavigate}>
           <Text style={[styles.buttonText, {color: theme.colors.text}]}>
