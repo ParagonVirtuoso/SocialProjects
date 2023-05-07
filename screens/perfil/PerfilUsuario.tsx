@@ -1,5 +1,13 @@
 import React from 'react';
-import {View, Text, Image, FlatList, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 
 export interface Usuario {
   nome: string;
@@ -12,17 +20,36 @@ interface PerfilUsuarioProps {
 }
 
 const PerfilUsuario: React.FC<PerfilUsuarioProps> = ({usuario}) => {
+  const [amigos, setAmigos] = React.useState(usuario.amigos);
+  const [novoAmigo, setNovoAmigo] = React.useState('');
+
+  const adicionarAmigo = () => {
+    if (novoAmigo) {
+      setAmigos([...amigos, novoAmigo]);
+      setNovoAmigo('');
+    }
+  };
+
   return (
     <View>
       <Image source={{uri: usuario.foto}} style={styles.foto} />
       <Text style={styles.nome}>{usuario.nome}</Text>
       <Text style={styles.subtitulo}>Amigos:</Text>
       <FlatList
-        data={usuario.amigos}
+        data={amigos}
         renderItem={({item}) => <Text style={styles.amigo}>{item}</Text>}
         keyExtractor={(item, index) => index.toString()}
         style={styles.listaAmigos}
       />
+      <TextInput
+        placeholder="Novo amigo"
+        value={novoAmigo}
+        onChangeText={setNovoAmigo}
+        style={styles.input}
+      />
+      <TouchableOpacity onPress={adicionarAmigo} style={styles.botao}>
+        <Text style={styles.textoBotao}>Adicionar amigo</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -50,6 +77,23 @@ const styles = StyleSheet.create({
   },
   listaAmigos: {
     maxHeight: 150,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    padding: 10,
+    marginVertical: 10,
+  },
+  botao: {
+    backgroundColor: '#2ecc71',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  textoBotao: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 
