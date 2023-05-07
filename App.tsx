@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, StatusBar, SafeAreaView} from 'react-native';
+import {StyleSheet, StatusBar, SafeAreaView} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from './screens/Auth/Login/login';

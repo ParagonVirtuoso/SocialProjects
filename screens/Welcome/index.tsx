@@ -53,6 +53,7 @@ const WelcomeScreen = () => {
       </Animated.Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
+          testID="Login"
           style={[styles.button, {backgroundColor: theme.colors.primary}]}
           onPress={handleNavigate}>
           <Text style={[styles.buttonText, {color: theme.colors.text}]}>
@@ -64,6 +65,7 @@ const WelcomeScreen = () => {
             Modo noturno
           </Text>
           <Switch
+            testID="dark-mode-toggle"
             trackColor={{
               false: theme.colors.secondary,
               true: theme.colors.primary,
