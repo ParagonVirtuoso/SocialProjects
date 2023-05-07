@@ -37,9 +37,9 @@ const Login: React.FC = () => {
 
     innerContainerHeight.value = withTiming(0, {duration: 500});
     setTimeout(() => {
-      navigation.navigate('PerfilUsuario', {usuario});
+      navigation.navigate('Home', {usuario});
       innerContainerHeight.value = 200;
-    }, 500);
+    }, 600);
   };
 
   React.useEffect(() => {
