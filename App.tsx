@@ -1,6 +1,11 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import PerfilUsuario, {Usuario} from './screens/perfil/PerfilUsuario';
+import Login from './screens/login/login';
+
+const Stack = createStackNavigator();
 
 const App: React.FC = () => {
   const usuario: Usuario = {
@@ -10,9 +15,21 @@ const App: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <PerfilUsuario usuario={usuario} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{title: 'Login'}}
+        />
+        <Stack.Screen
+          name="PerfilUsuario"
+          component={PerfilUsuario}
+          options={{title: 'Perfil de Usuário'}}
+          initialParams={{usuario}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
