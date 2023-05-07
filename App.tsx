@@ -20,12 +20,12 @@ const App: React.FC = () => {
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{title: 'Login'}}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="PerfilUsuario"
           component={PerfilUsuario}
-          options={{title: 'Perfil de Usuário'}}
+          options={{headerShown: false}}
           initialParams={{usuario}}
         />
       </Stack.Navigator>
