@@ -1,9 +1,12 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet, StatusBar, SafeAreaView} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import PerfilUsuario, {Usuario} from './screens/perfil/PerfilUsuario';
-import Login from './screens/login/login';
+import Login from './screens/Auth/Login/login';
+import Home from './screens/Home/Home';
+import PerfilUsuario from './screens/Profile/PerfilUsuario';
+import Welcome from './screens/Welcome';
+import {ThemeProvider} from './theme/ThemeContext';
 
 const Stack = createStackNavigator();
 
@@ -15,21 +18,38 @@ const App: React.FC = () => {
   };
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="PerfilUsuario"
-          component={PerfilUsuario}
-          options={{headerShown: false}}
-          initialParams={{usuario}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={{flex: 1}}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              testID="WelcomeScreen"
+              name="Welcome"
+              component={Welcome}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              testID="Login"
+              name="Login"
+              component={Login}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="PerfilUsuario"
+              component={PerfilUsuario}
+              options={{headerShown: false}}
+              initialParams={{usuario}}
+            />
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{headerShown: false}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 };
 
